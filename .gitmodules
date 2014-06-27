@@ -1,0 +1,3 @@
+[submodule "AudioIO"]
+	path = AudioIO
+	url = git@github.com:ssfrr/juliacon_talk.git
