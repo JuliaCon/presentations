@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="524px" height="289px" viewBox="0 0 524 289" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.0.3 (7891) - http://www.bohemiancoding.com/sketch -->
+    <title>components-diagram</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Rectangle-1-+-Guide.xticks" sketch:type="MSLayerGroup" transform="translate(432.000000, 132.000000)">
+            <rect id="Rectangle-1" fill-opacity="0.71727808" fill="#242628" sketch:type="MSShapeGroup" x="0" y="0" width="92" height="25"></rect>
+            <text id="Guide.xticks" sketch:type="MSTextLayer" font-family="Signika" font-size="12" font-weight="normal" fill="#FFFFFF">
+                <tspan x="14" y="17">Guide.xticks</tspan>
+            </text>
+        </g>
+        <g id="Rectangle-1-+-Guide.xticks-4" sketch:type="MSLayerGroup" transform="translate(432.000000, 66.000000)">
+            <rect id="Rectangle-1" fill-opacity="0.71727808" fill="#242628" sketch:type="MSShapeGroup" x="0" y="0" width="92" height="25"></rect>
+            <text id="Guide.xlabel" sketch:type="MSTextLayer" font-family="Signika" font-size="12" font-weight="normal" fill="#FFFFFF">
+                <tspan x="12" y="17">Guide.xlabel</tspan>
+            </text>
+        </g>
+        <g id="Rectangle-1-+-Guide.xticks-10" sketch:type="MSLayerGroup" transform="translate(432.000000, 0.000000)">
+            <rect id="Rectangle-1" fill-opacity="0.71727808" fill="#242628" sketch:type="MSShapeGroup" x="0" y="0" width="92" height="25"></rect>
+            <text id="Guide.ylabel" sketch:type="MSTextLayer" font-family="Signika" font-size="12" font-weight="normal" fill="#FFFFFF">
+                <tspan x="12" y="17">Guide.ylabel</tspan>
+            </text>
+        </g>
+        <g id="Rectangle-1-+-Guide.xticks-2" sketch:type="MSLayerGroup" transform="translate(432.000000, 198.000000)">
+            <g>
+                <rect id="Rectangle-1" fill-opacity="0.71727808" fill="#242628" sketch:type="MSShapeGroup" x="0" y="0" width="92" height="25"></rect>
+                <text id="Guide.yticks" sketch:type="MSTextLayer" font-family="Signika" font-size="12" font-weight="normal" fill="#FFFFFF">
+                    <tspan x="14" y="17">Guide.yticks</tspan>
+                </text>
+            </g>
+        </g>
+        <g id="Rectangle-1-+-Guide.xticks-3" sketch:type="MSLayerGroup" transform="translate(432.000000, 264.000000)">
+            <g id="Rectangle-1-+-Guide.xticks-2">
+                <rect id="Rectangle-1" fill-opacity="0.71727808" fill="#242628" sketch:type="MSShapeGroup" x="0" y="0" width="92" height="25"></rect>
+                <text id="Geom.point" sketch:type="MSTextLayer" font-family="Signika" font-size="12" font-weight="normal" fill="#FFFFFF">
+                    <tspan x="14" y="17">Geom.point</tspan>
+                </text>
+            </g>
+        </g>
+        <g id="Rectangle-1-+-Guide.xticks-6" sketch:type="MSLayerGroup" transform="translate(95.000000, 165.000000)">
+            <rect id="Rectangle-1" fill-opacity="0.71727808" fill="#242628" sketch:type="MSShapeGroup" x="0" y="0" width="128" height="25"></rect>
+            <text id="Scale.x_continuous" sketch:type="MSTextLayer" font-family="Signika" font-size="12" font-weight="normal" fill="#FFFFFF">
+                <tspan x="14.6885246" y="17">Scale.x_continuous</tspan>
+            </text>
+        </g>
+        <g id="Rectangle-1-+-Guide.xticks-7" sketch:type="MSLayerGroup" transform="translate(95.000000, 231.000000)">
+            <rect id="Rectangle-1" fill-opacity="0.71727808" fill="#242628" sketch:type="MSShapeGroup" x="0" y="0" width="128" height="25"></rect>
+            <text id="Scale.y_continuous" sketch:type="MSTextLayer" font-family="Signika" font-size="12" font-weight="normal" fill="#FFFFFF">
+                <tspan x="14.6885246" y="17">Scale.y_continuous</tspan>
+            </text>
+        </g>
+        <g id="Rectangle-1-+-Guide.xticks-5" sketch:type="MSLayerGroup" transform="translate(278.000000, 132.000000)">
+            <g id="Rectangle-1-+-Guide.xticks-2">
+                <rect id="Rectangle-1" fill-opacity="0.71727808" fill="#242628" sketch:type="MSShapeGroup" x="0" y="0" width="92" height="25"></rect>
+                <text id="Stat.xticks" sketch:type="MSTextLayer" font-family="Signika" font-size="12" font-weight="normal" fill="#FFFFFF">
+                    <tspan x="17" y="17">Stat.xticks</tspan>
+                </text>
+            </g>
+        </g>
+        <g id="Rectangle-1-+-Guide.xticks-8" sketch:type="MSLayerGroup" transform="translate(278.000000, 198.000000)">
+            <g id="Rectangle-1-+-Guide.xticks-2">
+                <rect id="Rectangle-1" fill-opacity="0.71727808" fill="#242628" sketch:type="MSShapeGroup" x="0" y="0" width="92" height="25"></rect>
+                <text id="Stat.yticks" sketch:type="MSTextLayer" font-family="Signika" font-size="12" font-weight="normal" fill="#FFFFFF">
+                    <tspan x="19" y="16">Stat.yticks</tspan>
+                </text>
+            </g>
+        </g>
+        <g id="Rectangle-1-+-Guide.xticks-9" sketch:type="MSLayerGroup" transform="translate(278.000000, 264.000000)">
+            <g id="Rectangle-1-+-Guide.xticks-2">
+                <rect id="Rectangle-1" fill-opacity="0.71727808" fill="#242628" sketch:type="MSShapeGroup" x="0" y="0" width="92" height="25"></rect>
+                <text id="Stat.identity" sketch:type="MSTextLayer" font-family="Signika" font-size="12" font-weight="normal" fill="#FFFFFF">
+                    <tspan x="15" y="17">Stat.identity</tspan>
+                </text>
+            </g>
+        </g>
+        <path d="M370.5,145.5 L433.5,145.5" id="Line" stroke="#979797" stroke-linecap="square" fill="#979797" sketch:type="MSShapeGroup"></path>
+        <path id="Line-decoration-1" d="M433.5,145.5 C429.72,144.45 426.48,143.55 422.7,142.5 C422.7,144.6 422.7,146.4 422.7,148.5 C426.48,147.45 429.72,146.55 433.5,145.5 C433.5,145.5 433.5,145.5 433.5,145.5 Z" stroke="#979797" stroke-linecap="square" fill="#979797"></path>
+        <path d="M223.5,178.5 L277.5,146.5" id="Line-4" stroke="#979797" stroke-linecap="square" fill="#979797" sketch:type="MSShapeGroup"></path>
+        <path id="Line-4-decoration-1" d="M276.838075,146.892252 C273.050881,147.915999 269.804714,148.793496 266.017519,149.817243 C267.088104,151.623855 268.005749,153.17238 269.076334,154.978992 C271.792943,152.148633 274.121466,149.722611 276.838075,146.892252 C276.838075,146.892252 276.838075,146.892252 276.838075,146.892252 Z" stroke="#979797" stroke-linecap="square" fill="#979797"></path>
+        <path d="M25.5,179.5 L94.5,179.5" id="Line-8" stroke="#979797" stroke-linecap="square" fill="#979797" sketch:type="MSShapeGroup"></path>
+        <path id="Line-8-decoration-1" d="M94.5,179.5 C90.72,178.45 87.48,177.55 83.7,176.5 C83.7,178.6 83.7,180.4 83.7,182.5 C87.48,181.45 90.72,180.55 94.5,179.5 C94.5,179.5 94.5,179.5 94.5,179.5 Z" stroke="#979797" stroke-linecap="square" fill="#979797"></path>
+        <path d="M223.5,243.5 L277.5,211.5" id="Line-6" stroke="#979797" stroke-linecap="square" fill="#979797" sketch:type="MSShapeGroup"></path>
+        <path id="Line-6-decoration-1" d="M276.838075,211.892252 C273.050881,212.915999 269.804714,213.793496 266.017519,214.817243 C267.088104,216.623855 268.005749,218.17238 269.076334,219.978992 C271.792943,217.148633 274.121466,214.722611 276.838075,211.892252 C276.838075,211.892252 276.838075,211.892252 276.838075,211.892252 Z" stroke="#979797" stroke-linecap="square" fill="#979797"></path>
+        <path d="M223.5,243.5 L277.5,276.5" id="Line-7" stroke="#979797" stroke-linecap="square" fill="#979797" sketch:type="MSShapeGroup"></path>
+        <path id="Line-7-decoration-1" d="M277.256756,276.351351 C274.578873,273.484324 272.283545,271.026872 269.605662,268.159845 C268.510617,269.951737 267.572007,271.487644 266.476962,273.279536 C270.24989,274.354671 273.483828,275.276215 277.256756,276.351351 C277.256756,276.351351 277.256756,276.351351 277.256756,276.351351 Z" stroke="#979797" stroke-linecap="square" fill="#979797"></path>
+        <path d="M223.5,178.5 L277.5,274.5" id="Line-5" stroke="#979797" stroke-linecap="square" fill="#979797" sketch:type="MSShapeGroup"></path>
+        <path id="Line-5-decoration-1" d="M277.428736,274.373309 C276.490703,270.563979 275.686675,267.298839 274.748642,263.48951 C272.918333,264.519058 271.349497,265.401528 269.519188,266.431077 C272.28753,269.210858 274.660395,271.593528 277.428736,274.373309 C277.428736,274.373309 277.428736,274.373309 277.428736,274.373309 Z" stroke="#979797" stroke-linecap="square" fill="#979797"></path>
+        <path d="M370.5,211.5 L433.5,211.5" id="Line-2" stroke="#979797" stroke-linecap="square" fill="#979797" sketch:type="MSShapeGroup"></path>
+        <path id="Line-2-decoration-1" d="M433.5,211.5 C429.72,210.45 426.48,209.55 422.7,208.5 C422.7,210.6 422.7,212.4 422.7,214.5 C426.48,213.45 429.72,212.55 433.5,211.5 C433.5,211.5 433.5,211.5 433.5,211.5 Z" stroke="#979797" stroke-linecap="square" fill="#979797"></path>
+        <path d="M370.5,275.5 L433.5,275.5" id="Line-3" stroke="#979797" stroke-linecap="square" fill="#979797" sketch:type="MSShapeGroup"></path>
+        <path id="Line-3-decoration-1" d="M433.5,275.5 C429.72,274.45 426.48,273.55 422.7,272.5 C422.7,274.6 422.7,276.4 422.7,278.5 C426.48,277.45 429.72,276.55 433.5,275.5 C433.5,275.5 433.5,275.5 433.5,275.5 Z" stroke="#979797" stroke-linecap="square" fill="#979797"></path>
+        <text id="x" sketch:type="MSTextLayer" font-family="Signika" font-size="12" font-weight="normal" fill="#413F3F">
+            <tspan x="243" y="153">x</tspan>
+        </text>
+        <text id="x" sketch:type="MSTextLayer" font-family="Signika" font-size="12" font-weight="normal" fill="#413F3F">
+            <tspan x="52" y="174">x</tspan>
+        </text>
+        <text id="y" sketch:type="MSTextLayer" font-family="Signika" font-size="12" font-weight="normal" fill="#413F3F">
+            <tspan x="52" y="238">y</tspan>
+        </text>
+        <text id="xs" sketch:type="MSTextLayer" font-family="Signika" font-size="20" font-weight="bold" fill="#413F3F">
+            <tspan x="1" y="184">xs</tspan>
+        </text>
+        <path d="M25.5,244.5 L94.5,244.5" id="Line-9" stroke="#979797" stroke-linecap="square" fill="#979797" sketch:type="MSShapeGroup"></path>
+        <path id="Line-9-decoration-1" d="M94.5,244.5 C90.72,243.45 87.48,242.55 83.7,241.5 C83.7,243.6 83.7,245.4 83.7,247.5 C87.48,246.45 90.72,245.55 94.5,244.5 C94.5,244.5 94.5,244.5 94.5,244.5 Z" stroke="#979797" stroke-linecap="square" fill="#979797"></path>
+        <text id="ys" sketch:type="MSTextLayer" font-family="Signika" font-size="20" font-weight="bold" fill="#413F3F">
+            <tspan x="0" y="250">ys</tspan>
+        </text>
+        <text id="xticks" sketch:type="MSTextLayer" font-family="Signika" font-size="12" font-weight="normal" fill="#413F3F">
+            <tspan x="381" y="134">xticks</tspan>
+        </text>
+        <text id="yticks" sketch:type="MSTextLayer" font-family="Signika" font-size="12" font-weight="normal" fill="#413F3F">
+            <tspan x="384" y="200">yticks</tspan>
+        </text>
+        <text id="x,-y" sketch:type="MSTextLayer" font-family="Signika" font-size="12" font-weight="normal" fill="#413F3F">
+            <tspan x="388" y="266">x, y</tspan>
+        </text>
+        <text id="y" sketch:type="MSTextLayer" font-family="Signika" font-size="12" font-weight="normal" fill="#413F3F">
+            <tspan x="243" y="277">y</tspan>
+        </text>
+    </g>
+</svg>
