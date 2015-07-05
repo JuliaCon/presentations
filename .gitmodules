@@ -1,3 +1,3 @@
 [submodule "AudioIO"]
-	path = AudioIO
+	path = 2014/AudioIO
 	url = git@github.com:ssfrr/juliacon_talk.git

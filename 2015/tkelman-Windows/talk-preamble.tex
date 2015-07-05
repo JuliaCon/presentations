@@ -1,0 +1,119 @@
+%****************************************************************************
+%
+%****************************************************************************
+%
+\usepackage{graphicx}
+% \usepackage{ifthen}
+\usepackage{fancybox}
+\usepackage{textpos}
+% \usepackage{color}
+% \usepackage{hyphenat}
+% \renewcommand{\sfdefault}{pag}  % Use a nicer font for the headers
+% \usepackage{float}
+% \usepackage{paralist}
+\usepackage{url}
+% \usepackage{moreverb}
+% \usepackage{longtable}
+
+\usepackage{bm,bbm}
+\usepackage{amsfonts,amsmath,amsthm,amstext,amssymb}
+\usepackage{latexsym}
+\usepackage[usenames]{pstricks}
+%\usepackage{pst-plot,pst-3dplot,pst-node}
+\usepackage{psfrag}
+\usepackage{enumerate}
+\usepackage[sans]{dsfont}
+\usepackage[mathscr]{euscript}
+\usepackage{mathtools}
+%\usepackage{cite}
+\usepackage{multido}
+
+\graphicspath{{figs/}}
+
+\DeclareMathOperator{\rank}{rank}      
+\DeclareMathOperator{\lexmin}{lexmin}
+\DeclareMathOperator{\arglexmin}{arglexmin}
+\DeclareMathOperator{\argmin}{argmin}
+\DeclareMathOperator{\relint}{relint}                                % relative interior
+\DeclareMathOperator{\inter}{int}                                    % interior of a set
+\DeclareMathOperator{\gph}{gph}                                      % graph of a mapping
+\DeclareMathOperator{\epi}{epi}                                      % epigraph of a function
+\DeclareMathOperator{\dom}{dom}                                      % domain of a function
+\DeclareMathOperator{\bnd}{bnd}                                      % boundary of a set
+\DeclareMathOperator{\aff}{affh}                                     % affine hul
+\DeclareMathOperator{\co}{convh}                                     % convex hull
+\DeclareMathOperator{\clco}{\overline{convh}}                        % closed convex hull
+
+\newrgbcolor{orange}{1.00 0.65 0.00}
+\newrgbcolor{mellow}{0.847 0.72 0.525}
+\newrgbcolor{grey}{0.5 0.5 0.5}
+\newrgbcolor{darkgrey}{0.7 0.7 0.7}
+\newrgbcolor{lightgrey}{0.3 0.3 0.3}
+\newrgbcolor{verylightgrey}{0.9 0.9 0.9}
+\newrgbcolor{darkred}{0.5 0 0}
+\newrgbcolor{darkgreen}{0 0.5 0}
+\newrgbcolor{darkblue}{0 0 0.5}
+\newrgbcolor{copper}{1 0.62 0.4}
+\newrgbcolor{aquamarine}{0.49 1 0.83}
+\newrgbcolor{pink}{1 0.4 0.6}
+\newrgbcolor{lightblue}{.30 .86 .89}
+\newrgbcolor{highlight}{1 1 0.9}
+\newrgbcolor{periwinkle}{0.8 0.8 1}
+\newrgbcolor{indigo}{0.4 0 1}
+\newrgbcolor{babyblue}{0.43 1 1}
+\newrgbcolor{royalblue}{0.031 0.298 0.619}
+\newrgbcolor{navyblue}{0 0 0.501}
+\newrgbcolor{sapphire}{0.031 0.145 0.403}
+\newrgbcolor{denim}{0.082 0.376 0.741}
+\newrgbcolor{cobaltblue}{0 0.278 0.67}
+\newrgbcolor{ceruleanblue}{0.164 0.321 0.745}
+
+\def\mc{\mathcal}
+\def\mbf#1{\mathbf{#1}}
+\def\mbb#1{\mathbb{#1}}
+\def\bb{(\cdot)}
+\def\bbb{(\cdot,\cdot)}
+\def\bbbb{(\cdot,\cdot,\cdot)}
+\def\eqbyd{:=}                                                      %equal by definition
+\def\st{\mbox{ such that }}
+\def\R{\mathds{R}}                                                  % real numbers
+\def\Rinf{\bar{\R}}                                                 % R U +-\infty
+\def\Rnm#1#2{\R^{#1\times#2}}                                         % for matrices
+\def\N{\mathds{N}}                                                  % N = {1,2,...}
+\def\powset#1{2^{#1}}                                               % power set
+\def\proj#1#2{\mathrm{Proj}_{#1}\left(#2\right)}
+\def\BackSet#1{\mathscr{B}\left(#1\right)}
+\def\Bmaxmin#1{\mathscr{B}_{\small\mbox{max-min}}\left(#1\right)}
+\def\Bminmax#1{\mathscr{B}_{\small\mbox{min-max}}\left(#1\right)}
+\def\Smaxmin#1{\mathscr{S}_{\small\mbox{max-min}}\left(#1\right)}
+\def\Sminmax#1{\mathscr{S}_{\small\mbox{min-max}}\left(#1\right)}
+\def\restrict#1#2{#1 \mid #2}
+\def\row#1#2{#1_{\left[#2,\cdot\right]}}                            % row of a matrix
+\def\col#1#2{#1_{\left[#2\right]}}                                  % column of a vector
+\def\tto{\rightrightarrows}                                         % double arrow for set-valued maps
+\def\dash{\nobreakdash-\hspace{0pt}}
+\def\infsup{\textrm{inf}\dash\textrm{sup} }
+\def\supinf{\textrm{sup}\dash\textrm{inf} }
+\def\minmax{\textrm{min}\dash\textrm{max} }
+\def\maxmin{\textrm{max}\dash\textrm{min} }                       
+\def\dprod#1{\langle{#1}\rangle}                                    % dot product
+\def\CI#1#2{\mathcal{I}_c(#1,#2)}                                   % controllability index
+\def\g#1{g_{\mbox{\tiny $#1$}}}                                     % gauge function
+\def\rb#1{{\color{royalblue}{#1}}}
+\def\bcite#1{\rb{\small #1}}
+%
+
+%
+% Beamer setup
+%
+\mode<presentation>
+{
+  \usetheme{Boadilla}
+  \setbeamercovered{dynamic}
+}
+
+\setbeamertemplate{navigation symbols}{}
+\setlength{\TPHorizModule}{1cm}
+\setlength{\TPVertModule}{1cm}
+
+\usefonttheme{professionalfonts}

@@ -1,0 +1,432 @@
+\documentclass[compressed,dvips,letter]{beamer}
+
+\mode<presentation>
+{
+  \usetheme{Boadilla}
+  \setbeamercovered{dynamic}
+}
+
+\input{talk-preamble}
+\usepackage{array}
+\usepackage{subfigure}
+\usepackage{multirow}
+\usepackage{arydshln}
+\usepackage{verbatim}
+\usepackage{graphicx}
+\usepackage{amsmath}
+%\usepackage{url}
+\usepackage{hyperref}
+\usepackage{breakurl}
+%\usepackage{pdfpages}
+
+
+\setbeamertemplate{navigation symbols}{}
+\setlength{\TPHorizModule}{1cm}
+\setlength{\TPVertModule}{1cm}
+
+
+\usefonttheme{professionalfonts}
+\title[How to Support Windows]
+{How to \only<2->{Support }Windows\\
+\onslide<2->{\vspace{5pt}
+\small Cross-platform installation and testing for Julia packages}}
+
+\author{Tony Kelman \vspace{-10pt}}
+
+\institute[{\fontfamily{pcr}\selectfont @tkelman}]
+{
+  \footnotesize {\fontfamily{pcr}\selectfont @tkelman}
+}
+\date[JuliaCon, June 25 2015]{\includegraphics[width=85pt]{fig/julia_logo.eps}
+\\JuliaCon\\June 25, 2015}
+
+\subject{}
+
+
+\begin{document}
+
+%\setbeamertemplate{blocks}[rounded][shadow=true]
+
+\setbeamertemplate{footline}{}
+\begin{frame}
+  \titlepage
+\end{frame}
+
+
+%
+%===========================================================================================
+%
+\setcounter{framenumber}{0}
+\setbeamertemplate{footline}[infolines theme]
+
+
+
+\begin{frame}[fragile]\frametitle{Reasons to care about Windows support}
+\begin{itemize}
+  \item Education
+  \begin{itemize}
+    \item Not all students can afford a Mac
+    \item Not everyone knows how to use Linux
+  \end{itemize}
+  \item Some industries
+  \begin{itemize}
+    \item Require proprietary Windows-only software
+    \item Conservative IT policies
+    \item Instrumentation and embedded hardware
+  \end{itemize}
+  \onslide<2->{
+  \item Masochism
+  \begin{itemize}
+    \item Fun to find and fix the bugs no one else wants to touch
+  \end{itemize}
+  }
+\end{itemize}
+
+\end{frame}
+%
+%--------------------------------------------------------------
+%
+
+
+
+\begin{frame}[fragile]\frametitle{Good news and bad news}
+\begin{itemize}
+  \item Biggest question for package authors - binary dependencies
+  \item Is your package code pure Julia?
+  \begin{itemize}
+    \item Base Julia is portable enough that most code will work
+    \item Few things to watch out for, shelling out, filesystem differences
+    \item Run your tests on platforms you don't use
+  \end{itemize}
+  \item Are you wrapping a \texttt{C}, \texttt{C++}, or Fortran library?
+  \begin{itemize}
+    \item Harder problem, but not hopeless
+    \item Automated tools for building and distributing binaries
+  \end{itemize}
+\end{itemize}
+
+\end{frame}
+%
+%--------------------------------------------------------------
+%
+
+
+
+\begin{frame}[fragile]\frametitle{Continuous integration for Julia packages on Windows}
+\begin{center}
+\includegraphics[width=120pt]{fig/appveyor-logo-with-text.eps}
+\end{center}
+\begin{itemize}
+  \item AppVeyor {\small \url{http://www.appveyor.com}} - free for open source projects
+  \item Same idea as Travis CI {\small \url{https://travis-ci.org}}, but for Windows
+  \item Add \texttt{appveyor.yml} to your repository and click one button to enable
+  \begin{itemize}
+    \item Starts up a Windows VM on every commit and pull request
+    \item Installs your package, runs your tests, reports status back to GitHub
+  \end{itemize}
+  \item Template \texttt{appveyor.yml} file in Example.jl package \\ \url{https://github.com/JuliaLang/Example.jl/blob/master/appveyor.yml}
+\end{itemize}
+
+\end{frame}
+%
+%--------------------------------------------------------------
+%
+
+
+
+
+\begin{frame}[fragile]\frametitle{Example appveyor.yml file}
+{\scriptsize
+\begin{verbatim}
+environment:
+  matrix:
+  - JULIAVERSION: "julialang/bin/winnt/x86/0.3/julia-0.3-latest-win32.exe"
+  - JULIAVERSION: "julialang/bin/winnt/x64/0.3/julia-0.3-latest-win64.exe"
+  - JULIAVERSION: "julianightlies/bin/winnt/x86/julia-latest-win32.exe"
+  - JULIAVERSION: "julianightlies/bin/winnt/x64/julia-latest-win64.exe"
+
+install:
+# Download most recent Julia Windows binary
+  - ps: (new-object net.webclient).DownloadFile(
+        $("http://s3.amazonaws.com/"+$env:JULIAVERSION),
+        "C:\projects\julia-binary.exe")
+# Run installer silently, output to C:\projects\julia
+  - C:\projects\julia-binary.exe /S /D=C:\projects\julia
+
+build_script:
+# Need to convert from shallow to complete for Pkg.clone to work
+  - IF EXIST .git\shallow (git fetch --unshallow)
+  - C:\projects\julia\bin\julia -e "versioninfo();
+      Pkg.clone(pwd(), \"Example\"); Pkg.build(\"Example\")"
+
+test_script:
+  - C:\projects\julia\bin\julia --check-bounds=yes -e "Pkg.test(\"Example\")"
+\end{verbatim}
+}
+\end{frame}
+%
+%--------------------------------------------------------------
+%
+
+
+\begin{frame}[fragile]\frametitle{Binary dependencies, the hard part}
+
+\begin{itemize}
+  \item What makes building scientific software on Windows hard?
+  \item Windows is not POSIX - no \texttt{sh}, no coreutils
+  \item Win32 system API, \texttt{NtQueryInformationFile} and other unspeakable horrors
+  \item No built-in package management for native dependency handling
+  \onslide<2->{
+  \item Let's talk about compilers
+  \begin{itemize}
+    \item Visual Studio, the platform native choice
+    \begin{itemize}
+      \item World-class debugger and IDE
+      \item \texttt{C} is an afterthought, very recently started supporting C99 (mostly)
+      \item No Fortran compiler, no 64-bit inline assembly
+    \end{itemize}
+    \item Intel's compilers, the expensive option
+    \begin{itemize}
+      \item High performance \texttt{C}, \texttt{C++}, and Fortran compilers
+      \item Has features missing from MSVC, but not free to install
+    \end{itemize}
+  \end{itemize}
+  }
+\end{itemize}
+\end{frame}
+%
+%--------------------------------------------------------------
+%
+
+
+\begin{frame}[fragile]\frametitle{Compilers and build systems, cont'd}
+
+\begin{itemize}
+  \item Open-source compilers
+  \begin{itemize}
+    \item Clang, the newcomer
+    \begin{itemize}
+      \item Windows \texttt{C++} exception handling a work in progress
+      \item No Fortran compiler
+    \end{itemize}
+    \item GCC (MinGW-w64), yes it does run everywhere
+    \begin{itemize}
+      \item \texttt{gfortran} only option for open source scientific community
+      \item Excellent cross compilation support
+    \end{itemize}
+  \end{itemize}
+  \onslide<2->{
+  \item Let's talk about build systems
+  \begin{itemize}
+    \item Autotools \texttt{./configure} assumes a POSIX shell
+    \item Virtually all Makefiles written for GNU \texttt{make}
+    \item CMake an emerging standard, not universally used yet
+  \end{itemize}
+  \item Best way to build scientific libraries for Windows today?
+  \begin{itemize}
+    \item Build with GCC using a POSIX environment like Cygwin, or MSYS2, \\
+    or cross compile from Linux
+    \item Distribute just the binaries, Julia packages only need \texttt{dll} files
+    \begin{itemize}
+      \item Users do not need compilers or build environment at install or run time
+    \end{itemize}
+  \end{itemize}
+  }
+\end{itemize}
+\end{frame}
+%
+%--------------------------------------------------------------
+%
+
+
+
+\begin{frame}[fragile]\frametitle{Building and providing Windows binaries}
+
+\begin{itemize}
+  \item Small, self-contained research code?
+  \begin{itemize}
+    \item Manually compile and upload a \texttt{dll}
+    \item From Linux you can use \texttt{x86\_64-w64-mingw32-gcc} to cross compile
+    \item Julia package just downloads compiled \texttt{dll} with \texttt{Binaries} provider from BinDeps.jl \url{https://github.com/JuliaLang/BinDeps.jl}
+    \item Add the following to a file \texttt{deps/build.jl} in your package
+  \end{itemize}
+\end{itemize}
+{\scriptsize
+\begin{verbatim}
+using BinDeps
+
+@BinDeps.setup
+
+libfoo = library_dependency("libfoo")
+
+# Sources and BuildProcess providers for source build on Linux
+# Homebrew.jl provider for binaries on OS X
+
+provides(Binaries, URI(string("https://github.com/foo/libfoo/",
+    "releases/download/v#.#.#/libfoo-#.#.#.tar.gz")),
+    [libfoo], os = :Windows)
+
+@BinDeps.install Dict([(:libfoo, :libfoo)])
+\end{verbatim}
+}
+\end{frame}
+%
+%--------------------------------------------------------------
+%
+
+
+
+\begin{frame}[fragile]\frametitle{openSUSE build service for cross compiling}
+
+\begin{itemize}
+  \item Established library with complicated dependencies?
+  \begin{itemize}
+    \item openSUSE has many cross-compiled Windows packages \url{https://build.opensuse.org/project/show/windows:mingw:win64}
+    \item Easy to use automated build service, a little like GitHub
+    \item Upload source tarball, write a \texttt{spec} file with compilation instructions
+  \end{itemize}
+\end{itemize}
+{\tiny
+\begin{verbatim}
+%define _basename zeromq
+Name:           mingw64-%{_basename}
+Version:        4.0.5
+Release:        0
+#!BuildIgnore: post-build-checks
+Summary:        Lightweight messaging kernel
+License:        LGPL-3.0+
+Group:          Productivity/Networking/Web/Servers
+Url:            http://www.zeromq.org/
+Source:         http://download.zeromq.org/%{_basename}-%{version}.tar.gz
+BuildRequires:  mingw64-cross-binutils
+BuildRequires:  mingw64-cross-gcc
+BuildRequires:  mingw64-cross-gcc-c++
+BuildRequires:  mingw64-cross-pkg-config
+BuildRequires:  mingw64-filesystem
+BuildRoot:      %{_tmppath}/%{name}-%{version}-build
+%_mingw64_package_header_debug
+BuildArch:      noarch
+\end{verbatim}
+}
+\end{frame}
+%
+%--------------------------------------------------------------
+%
+
+
+
+\begin{frame}[fragile]\frametitle{spec file for cross compiling}
+
+\begin{minipage}{0.44\textwidth}
+{\tiny
+\begin{verbatim}
+%package devel
+Summary:        Development files for ZeroMQ
+Group:          Development/Languages/C and C++
+Requires:       %name = %version
+Provides:       mingw64-libzmq-devel = %{version}
+
+%_mingw64_debug_package
+
+%prep
+%setup -q -n %{_basename}-%{version}
+
+%build
+%{_mingw64_configure}
+%{_mingw64_make} %{?_smp_mflags} V=1
+
+%install
+%{_mingw64_make} DESTDIR=%{buildroot} install
+
+%files
+%defattr(-,root,root,-)
+%doc COPYING COPYING.LESSER
+%{_mingw64_bindir}/libzmq.dll
+%{_mingw64_bindir}/curve_keygen.exe
+
+%files devel
+%defattr(-,root,root,-)
+%doc AUTHORS ChangeLog COPYING COPYING.LESSER NEWS
+%{_mingw64_includedir}/zmq*
+%{_mingw64_libdir}/libzmq.dll.a
+%{_mingw64_libdir}/pkgconfig/libzmq.pc
+
+%changelog
+\end{verbatim}
+}
+\end{minipage}
+\begin{minipage}{0.55\textwidth}
+{\footnotesize
+$\longleftarrow \texttt{./configure --host=x86\_64-w64-mingw32}$
+
+$\longleftarrow \texttt{make}$
+
+\vspace{8pt}
+
+$\longleftarrow \texttt{make install}$
+
+\vspace{25pt}}
+\end{minipage}
+\end{frame}
+%
+%--------------------------------------------------------------
+%
+
+
+
+\begin{frame}[fragile]\frametitle{WinRPM.jl for library installation}
+
+\begin{itemize}
+  \item WinRPM.jl \url{https://github.com/JuliaLang/WinRPM.jl} \\
+  primarily written by {\fontfamily{pcr}\selectfont @vtjnash} and {\fontfamily{pcr}\selectfont @ihnorton}
+  \item Parses RPM metadata, dependencies and latest versions, \\
+  from openSUSE build service and downloads binaries
+  \item Add the following to \texttt{deps/build.jl} in your package
+\end{itemize}
+{\scriptsize
+\begin{verbatim}
+using BinDeps
+
+@BinDeps.setup
+
+libfoo = library_dependency("libfoo")
+
+# other providers for Linux, OS X
+
+@windows_only begin
+    using WinRPM
+    provides(WinRPM.RPM, "foo", [libfoo], os = :Windows)
+    # replace "foo" with "Name:" value from opensuse package
+    # but without the "mingw64-" prefix
+end
+
+@BinDeps.install Dict([(:libfoo, :libfoo)])
+\end{verbatim}
+}
+\end{frame}
+%
+%--------------------------------------------------------------
+%
+
+
+\begin{frame}[fragile]\frametitle{Not an impossible problem}
+
+\begin{itemize}
+  \item A simple user experience can be achieved
+  \item Packages can work on Windows even if developers don't use it
+  \item Provide binaries, turn on automated testing
+\end{itemize}
+
+\vspace{20pt}
+
+\center
+Questions?
+
+\end{frame}
+%
+%--------------------------------------------------------------
+%
+
+
+
+\end{document}
